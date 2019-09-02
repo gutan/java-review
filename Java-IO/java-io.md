@@ -152,7 +152,7 @@ mappedByteBuffer.get(data)；
 
 #### 内存管理
 
-**MMC**：CPU的内存管理单元。
+**MMU**：CPU的内存管理单元（[IO 操作详细图参考](https://blog.csdn.net/linxdcn/article/details/72903422)）。
 
 **物理内存**：即内存条的内存空间。
 
