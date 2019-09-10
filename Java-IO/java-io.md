@@ -85,7 +85,7 @@ fileChannel.transferTo(position, count, socketChannel)
 
 ②用一个描述符标记此次待传输数据的地址以及长度，DMA 直接把数据从 **Read buffer** 传输到 **NIC buffer**，内核态返回到用户态
 
-### DirectByteBuffer（直接内存 或 堆外内存）	
+### DirectByteBuffer	
 
 ![](mix/directbuffer-io.png)
 
@@ -135,14 +135,14 @@ mappedByteBuffer.get(data)；
 
 ## 应用场景及使用
 
-#### DirectByteBuffer
+#### DirectByteBuffer 应用
 
 1. 堆外内存适用于生命周期中等或较长的对象。( 如果是生命周期较短的对象，在 YGC 的时候就被回收了，就不存在大内存且生命周期较长的对象在 FGC 对应用造成的性能影响 )。
 2. 直接的文件拷贝操作或者 I/O 操作。（直接使用堆外内存就能少去内存从用户内存拷贝到系统内存的消耗）。
 3. 使用 池+堆外内存 的组合方式，对生命周期较短，但涉及到 I/O 操作的对象进行堆外内存的再使用( Netty )。
 4. 创建堆外内存的消耗要大于创建堆内内存的消耗，分配堆外内存后，尽可能复用。
 
-#### MMAP
+#### MMAP 应用
 
 1. MMAP 使用时必须实现指定好内存映射的大小，并且一次 map 的大小限制在 1.5G 左右，重复 map 又会带来虚拟内存的回收、重新分配的问题，对于文件不确定大小的情形实在是太不友好了。
 2. MMAP 使用的是虚拟内存，和 PageCache 一样是由操作系统来控制刷盘的，虽然可以通过 force() 来手动控制，但这个时间把握不好，在小内存场景下会很令人头疼。
