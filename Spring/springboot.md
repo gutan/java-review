@@ -19,7 +19,7 @@ public class AppApplication {
 
 2.执行该对象的run方法
 
-#### 步骤具体流程
+#### 步骤具体流程(结合源码走流程)
 
 **初始化一个 SpringApplication 对象**
 
