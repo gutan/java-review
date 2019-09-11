@@ -88,7 +88,7 @@ AOP（Aspect Oriented Programming 面向切面编程）则是主要解决 如何
 
 
 
-### Spring 启动分析
+### Spring 启动分析
 
 > Spring 的启动过程实际上就是 Ioc 容器初始化以及载入 Bean 的过程。
 

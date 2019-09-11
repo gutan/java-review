@@ -1,15 +1,115 @@
-### SpringBoot 启动分析
+## SpringBoot
 
-启动命令：java -jar app-0.0.1-SNAPSHOT.jar
+**约定优于配置**
+
+小到配置文件，中间件的默认配置，大到内置容器、生态中的各种 Starters 无不遵循此设计规则
+
+**Starter 机制**
+
+提供自动配置模块及其它有用的依赖。也就意味着当我们项目中引入某个 Starter ，即拥有了此软件的默认使用能力，除非我们需要特定的配置，一般情况下我仅需要少量的配置或者不配置即可使用组件对应的功能。
+
+**Actuator 监控**
+
+Spring Boot 提供的对应用系统的自省和监控的集成功能，可以查看应用配置的详细信息，例如自动化配置信息、创建的 Spring beans 以及一些环境属性等
+
+
+
+### Spring Boot 核心注解
+
+Spring Boot 最大的特点是无需 XML 配置文件，能自动扫描包路径装载并注入对象，并能做到根据 classpath 下的 jar 包自动配置。
+
+#### @Configuration
+
+> org.springframework.context.annotation.Configuration
+
+作用：代替 applicationContext.xml 配置文件，所有这个配置文件里面能做到的事情都可以通过这个注解所在类来进行注册。
+
+#### @Bean
+
+作用：代替 XML 配置文件里面的 `<bean ...>` 配置。
+
+#### @ImportResource
+
+作用：有些通过类的注册方式配置不了的，可以通过这个注解引入额外的 XML 配置文件，有些老的配置文件无法通过 `@Configuration` 方式配置的非常管用。
+
+#### [@Import](https://www.carryingcoder.com/2018/10/09/SpringBoot-import%E7%9A%84%E4%BD%BF%E7%94%A8/)
+
+作用：通过查看@Import源码可以发现@Import注解只能注解在类上，以及唯一的参数value上可以配置3种类型的值Configuration，ImportSelector，ImportBeanDefinitionRegistrar
+
+1.直接导入配置类（@Configuration 类）
+
+2.依据条件选择配置类（实现 ImportSelector 接口）
+
+​	如果并不确定引入哪个配置类，需要根据@Import注解所标识的类或者另一个注解(通常是注解)里的定义信息选择配置类的话，用这种方式。
+
+3.动态注册Bean（实现 ImportBeanDefinitionRegistrar 接口）
+
+#### @SpringBootConfiguration
+
+作用：是 `@Configuration` 注解的变体，只是用来修饰是 Spring Boot 配置而已，或者可利于 Spring Boot 后续的扩展。
+
+#### @ComponentScan
+
+> org.springframework.context.annotation.ComponentScan
+
+作用：代替配置文件中的 `component-scan` 配置，开启组件扫描，即自动扫描包路径下的 `@Component` 注解进行注册 bean 实例到 context 中。
+
+#### @EnableAutoConfiguration
+
+> org.springframework.boot.autoconfigure.EnableAutoConfiguration
+
+ 作用：Spring Boot 诞生时添加的注解，用来提供自动配置。
+
+#### @SpringBootApplication
+
+作用： 注解就包含了以上 3 个主要注解	 
+
+```java
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Inherited
+@SpringBootConfiguration
+@EnableAutoConfiguration
+@ComponentScan(excludeFilters = {
+		@Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
+		@Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })
+public @interface SpringBootApplication {
+
+    ...
+}
+```
+
+
+
+### Starter 机制
+
+##### 自动配置原理
+
+[SpringBoot中自动配置原理](https://www.javazhiyin.com/32774.html)
+
+[Spring Boot源码分析——自动配置](https://www.i3geek.com/archives/1871)
+
+[自制一个Spring Boot Starter](https://www.codesheep.cn/2019/01/24/springbt-starter/)
+
+
+
+### Actuator 监控
+
+[监控应用](http://www.ityouknow.com/springboot/2018/02/06/spring-boot-actuator.html)
+
+
+
+### Spring Boot 启动分析
+
+启动命令：java -jar app-0.0.1-SNAPSHOT.jar，结合源码进行启动分析
 
 ```java
 @SpringBootApplication
 public class AppApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(AppApplication.class, args);
     }
-
 }
 ```
 
@@ -19,7 +119,7 @@ public class AppApplication {
 
 2.执行该对象的run方法
 
-#### 步骤具体流程(结合源码走流程)
+#### 步骤具体流程
 
 **初始化一个 SpringApplication 对象**
 
@@ -77,3 +177,5 @@ public class AppApplication {
 [给你一份Spring Boot知识清单](https://www.jianshu.com/p/83693d3d0a65)，简书，2017
 
 [SpringBoot启动流程解析](https://www.cnblogs.com/trgl/p/7353782.html)，博客园，2017
+
+[史上最简单的 SpringCloud 教程 | 终章](https://blog.csdn.net/forezp/article/details/70148833)，CSDN，2017
