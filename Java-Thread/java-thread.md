@@ -25,12 +25,18 @@ Java 实现多线程的手段：继承 *Thread* 类，实现 *Runable* 接口
 
 **Thread**：继承 *Thread* 类，重写 run()，主要涉及函数：
 
->**①sleep(long millis)**：在指定的毫秒数内让当前正在执行的线程休眠（暂停执行），允许较低优先级的线程获得运行机会
+>**①sleep(long millis)**：在指定的毫秒数内让当前正在执行的线程休眠（暂停执行），允许较低优先级的线程获得运行机会。
+>
 >**②join()**
+>
 >**③yield()**： 让当前运行线程回到可运行状态，允许具有相同优先级的其他线程获得运行机会。
+>
 >**④setPriority()**
+>
 >**⑤interrupt()**：不要以为它是中断某个线程！它只是向线程发送一个中断信号，让线程在无限等待时（如死锁时）能抛出异常，从而结束线程，但是如果你吃掉了这个异常，那么这个线程还是不会中断的！
+>
 >**⑥wait()（Object 对象函数）**：Obj.wait()，与 Obj.notify() 必须要与 synchronized(Obj) 一起使用
+>
 >**⑦notify()**
 >
 >详见线程状态状态
@@ -77,6 +83,7 @@ Java 实现多线程的手段：继承 *Thread* 类，实现 *Runable* 接口
 
 
 > 如果线程 A 希望立即结束线程 B，则可以对线程 B 对应的 Thread 实例调用 interrupt 方法。如果此刻线程 B正在 wait/sleep /join，则线程 B 会立刻抛出 InterruptedException，在 catch() {} 中直接 return 即可安全地结束线程。
+>
 > 需要注意的是，InterruptedException 是线程自己从内部抛出的，并不是 interrupt() 方法抛出的。对某一线程调用 interrupt() 时，如果该线程正在执行普通的代码，那么该线程根本就不会抛出InterruptedException。但是，一旦该线程进入到 wait()/sleep()/join() 后，就会立刻抛出InterruptedException 。
 
 - sleep() 睡眠时，保持对象锁，仍然占有该锁；而 wait() 睡眠时，释放对象锁。
