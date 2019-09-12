@@ -97,17 +97,15 @@ Java 实现多线程的手段：继承 *Thread* 类，实现 *Runable* 接口
 ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, RejectedExecutionHandler handler)
 ```
 
-```
-【强制】线程资源必须通过线程池提供，不允许在应用中自行显式创建线程。说明:使用线程池的好处是减少在创建和销毁线程上所花的时间以及系统资源的开销，解决资 源不足的问题。如果不使用线程池，有可能造成系统创建大量同类线程而导致消耗完内存或者“过度切换”的问题。
+> 【强制】线程资源必须通过线程池提供，不允许在应用中自行显式创建线程。说明:使用线程池的好处是减少在创建和销毁线程上所花的时间以及系统资源的开销，解决资 源不足的问题。如果不使用线程池，有可能造成系统创建大量同类线程而导致消耗完内存或者“过度切换”的问题。
+>
+> 【强制】线程池不允许使用 Executors 去创建，而是通过 ThreadPoolExecutor 的方式，这样 的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险。说明:Executors 返回的线程池对象的弊端如下:
+> 1)FixedThreadPool 和 SingleThreadPool:
+> 允许的请求队列长度为 Integer.MAX_VALUE，可能会堆积大量的请求，从而导致 OOM。
+> 2)CachedThreadPool 和 ScheduledThreadPool:
+> 允许的创建线程数量为 Integer.MAX_VALUE，可能会创建大量的线程，从而导致 OOM。
 
-【强制】线程池不允许使用 Executors 去创建，而是通过 ThreadPoolExecutor 的方式，这样 的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险。说明:Executors 返回的线程池对象的弊端如下:
-1)FixedThreadPool 和 SingleThreadPool:
-允许的请求队列长度为 Integer.MAX_VALUE，可能会堆积大量的请求，从而导致 OOM。
-2)CachedThreadPool 和 ScheduledThreadPool:
-允许的创建线程数量为 Integer.MAX_VALUE，可能会创建大量的线程，从而导致 OOM。
-```
-
-
+​																																	   ----《阿里巴巴 Java 开发手册》
 
 #### ThreadPoolExecutor 核心参数
 
@@ -202,3 +200,5 @@ Hystrix(TODO)
 [Java多线程学习（吐血超详细总结）](https://blog.csdn.net/evankaka/article/details/44153709)，CSDN，2015
 
 [如何优雅的使用和理解线程池](https://segmentfault.com/a/1190000015808897)，segmentfault，2018
+
+《阿里巴巴Java开发手册》
