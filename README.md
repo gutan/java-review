@@ -2,9 +2,11 @@
 
 ### Java 基础
 
-##### [Java-io](Java-IO/java-io.md)
+##### [IO](Java-IO/java-io.md)
 
-##### [Java-web](Java-Web/java-web.md)
+##### [Thread](Java-Thread/java-thread.md)
+
+##### [web](Java-Web/java-web.md)
 
 ### Spring
 
