@@ -2,11 +2,15 @@
 
 ### Java 基础
 
-##### [IO](Java-IO/java-io.md)
+##### [IO](Java-Base/java-io.md)
 
-##### [Thread](Java-Thread/java-thread.md)
+##### [Thread](Java-Base/java-thread.md)
 
 ##### [web](Java-Web/java-web.md)
+
+### JVM 基础
+
+##### [ClassLoader](JVM-Base/jvm-classloader.md)
 
 ### Spring
 
@@ -14,7 +18,10 @@
 
 ##### [SpringBoot](Spring/springboot.md)
 
+### Mybatis
+
+##### [Mybatis](Mybatis/mybatis.md)
+
 ### 其他
 
 ##### [log](Log/log.md)
-

@@ -4,7 +4,7 @@
 
 小到配置文件，中间件的默认配置，大到内置容器、生态中的各种 Starters 无不遵循此设计规则
 
-**Starter 机制**
+**[Starter 机制](springboot-starter.md)**
 
 提供自动配置模块及其它有用的依赖。也就意味着当我们项目中引入某个 Starter ，即拥有了此软件的默认使用能力，除非我们需要特定的配置，一般情况下我仅需要少量的配置或者不配置即可使用组件对应的功能。
 
@@ -79,18 +79,6 @@ public @interface SpringBootApplication {
     ...
 }
 ```
-
-
-
-### Starter 机制
-
-##### 自动配置原理
-
-[SpringBoot中自动配置原理](https://www.javazhiyin.com/32774.html)
-
-[Spring Boot源码分析——自动配置](https://www.i3geek.com/archives/1871)
-
-[自制一个Spring Boot Starter](https://www.codesheep.cn/2019/01/24/springbt-starter/)
 
 
 
