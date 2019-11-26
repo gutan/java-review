@@ -20,8 +20,14 @@
 
 ### Mybatis
 
-##### [Mybatis](Mybatis/mybatis.md)
+[Mybatis](Mybatis/mybatis.md)
+
+### 中间件
+
+[Redis](Redis/redis.md)
 
 ### 其他
 
-##### [log](Log/log.md)
+##### [Log](Log/log.md)
+
+[Performance Testing](PerformanceTesting/readme.md)

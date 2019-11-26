@@ -2,7 +2,7 @@
 
 ### 知识点梳理
 
-#### 关键概念
+##### 关键概念
 
 **进程**：每个进程都有独立的代码和数据空间（进程上下文），进程间的切换会有较大的开销，一个进程包含 1-n 个线程。（进程是资源分配的最小单位）
 
@@ -19,7 +19,7 @@
 > static int NORM_PRIORITY
 >           分配给线程的默认优先级，取值为5。
 
-#### 基本组件
+##### 基本组件
 
 Java 实现多线程的手段：继承 *Thread* 类，实现 *Runable* 接口
 
@@ -70,12 +70,12 @@ Java 实现多线程的手段：继承 *Thread* 类，实现 *Runable* 接口
 
 ![](mix/thread-state.jpg)
 
-#### sleep()  vs yield()
+##### sleep()  vs yield()
 
 - sleep() 使当前线程进入停滞状态，所以执行 sleep() 的线程在指定的时间内肯定不会被执行，时间的长短是由程序设定的，允许较低优先级的线程获得运行机会
 - yield() 只是使当前线程重新回到可执行状态，所以执行 yield() 的线程有可能在进入到可执行状态后马上又被执行，让出 CPU 的时间是不可设定的，并且把运行机会让给了同等优先级的其他线程
 
-#### sleep() vs Obj.wait() 
+##### sleep() vs Obj.wait() 
 
 - 在多线程的环境下，都可以在程序的调用处阻塞指定的毫秒数，并返回
 
@@ -92,7 +92,7 @@ Java 实现多线程的手段：继承 *Thread* 类，实现 *Runable* 接口
 
 ### 线程池创建
 
-#### 常见线程池方式
+##### 常见线程池方式
 
 - `Executors.newCachedThreadPool()`：无限线程池。
 - `Executors.newFixedThreadPool(nThreads)`：创建固定大小的线程池。
@@ -114,7 +114,7 @@ ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, Ti
 
 ​																																	   ----《阿里巴巴 Java 开发手册》
 
-#### ThreadPoolExecutor 核心参数
+##### ThreadPoolExecutor 核心参数
 
 - `corePoolSize` 为线程池的基本大小。
 - `maximumPoolSize` 为线程池最大线程大小。
@@ -122,7 +122,7 @@ ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, Ti
 - `workQueue` 用于存放任务的阻塞队列。
 - `handler` 当队列和最大线程池都满了之后的饱和策略
 
-#### 线程池状态转换
+##### 线程池状态转换
 
 > `RUNNING` 自然是运行状态，指可以接受任务执行队列里的任务
 >
@@ -190,7 +190,7 @@ public void execute() {
 }
 ```
 
-#### 配置线程池
+##### 配置线程池
 
 IO 密集型任务：由于线程并不是一直在运行，所以可以尽可能的多配置线程，比如 CPU 个数 * 2
 
@@ -198,9 +198,15 @@ CPU 密集型任务（大量复杂的运算）应当分配较少的线程，比�
 
 [如何合理地估算线程池大小？](http://ifeve.com/how-to-calculate-threadpool-size/)
 
-#### 线程池隔离
+##### 线程池隔离
 
 Hystrix(TODO)
+
+##### [IDEA Debug 多线程程序](https://blog.csdn.net/nextyu/article/details/79039566)
+
+IDEA 调试多线程程序，预期每个线程断点都会停留，但结果可能会出现 IDEA 只停留在其中某个线程的断点，而直接忽略其他线程的断点的情况。
+
+小实践：断点直接右击设置或打开断点视图设置，把 Suspend 模式从 All 改为 Thread。如果点了 Make Default ，那么后续加上的断点都是 Thead 设置，之前加上的断点不影响。
 
 ### 巨人肩膀
 

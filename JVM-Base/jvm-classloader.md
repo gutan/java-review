@@ -316,7 +316,7 @@ private class LazyIterator implements Iterator<S>{
 
 ```
 //Class 静态方法 forName 作用是通过调用者的加载器加载指定类
-A a = (A)Class.forName(“pacage.A”).newInstance();
+A a = (A)Class.forName(“package.A”).newInstance();
 效果等同
 A a = new A()；
 ```

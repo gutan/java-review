@@ -135,6 +135,8 @@ mappedByteBuffer.get(data)；
 
 ## 应用场景及使用
 
+[不用 buffer，用 buffer，用 channel，用mmap 示例](https://www.jianshu.com/p/25b328753017)
+
 #### DirectByteBuffer 应用
 
 1. 堆外内存适用于生命周期中等或较长的对象。( 如果是生命周期较短的对象，在 YGC 的时候就被回收了，就不存在大内存且生命周期较长的对象在 FGC 对应用造成的性能影响 )。
@@ -213,6 +215,8 @@ copyMemory 方法可以实现内存之间的拷贝，无论是堆内和堆外，
 
 [Java NIO浅析](https://tech.meituan.com/2016/11/04/nio.html)
 
+[Java NIO 管道](http://ifeve.com/pipe/)
+
 ## 巨人肩膀
 
 《JAVA NIO》O'Reilly 出版社
@@ -238,3 +242,6 @@ copyMemory 方法可以实现内存之间的拷贝，无论是堆内和堆外，
 [深入浅出MappedByteBuffer](https://www.jianshu.com/p/f90866dcbffc)，简书，2016
 
 [MappedByteBuffer VS FileChannel 孰强孰弱？](https://juejin.im/post/5cd82323f265da038932b1e6)，掘金，2019
+
+[压缩20M文件从30秒到1秒的优化过程](https://www.jianshu.com/p/25b328753017)，简书，2019
+
